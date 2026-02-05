@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estágios - DUVKUMON</title>
+    <style>
+        :root { 
+            --bg-color: #141414; 
+            --primary: #3a05f8; 
+            --text: #ffffff; 
+        }
+        body { margin: 0; padding: 0; background-color: var(--bg-color); color: var(--text); font-family: 'Segoe UI', sans-serif; scroll-behavior: smooth; }
+        .navbar { display: flex; align-items: center; padding: 15px 4%; background-color: #000; position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid #333; }
+        .logo { color: var(--primary); font-size: 1.8rem; font-weight: bold; text-decoration: none; margin-right: 40px; }
+        .nav-links a { color: #ccc; text-decoration: none; margin-right: 20px; }
+        .nav-links a.active { color: white; font-weight: bold; }
+        .header-title { padding: 100px 4% 20px 4%; }
+        .grid-container { padding: 0 4% 50px 4%; display: grid; grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); gap: 10px; }
+        .stage-card { background-color: #222; border: 2px solid #333; height: 60px; display: flex; justify-content: center; align-items: center; font-size: 1.5rem; font-weight: bold; color: #555; text-decoration: none; border-radius: 8px; transition: 0.3s; }
+        .stage-card:hover { border-color: var(--primary); color: white; background: #333; box-shadow: 0 0 10px var(--primary); }
+        .stage-section { padding: 40px 0; border-top: 1px solid #333; }
+        .section-title { margin-left: 4%; margin-bottom: 15px; font-size: 1.6rem; color: #e5e5e5; border-left: 5px solid var(--primary); padding-left: 15px; }
+        .row-container { padding: 10px 4%; display: flex; overflow-x: auto; gap: 15px; padding-bottom: 30px; min-height: 120px; }
+        .row-container::-webkit-scrollbar { height: 8px; }
+        .row-container::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 4px; }
+        .card { flex: 0 0 auto; width: 260px; height: 146px; background: #222; border-radius: 6px; overflow: hidden; transition: transform 0.3s; position: relative; border: 1px solid #333; display: flex; align-items: flex-end; text-decoration: none; }
+        .card:hover { transform: scale(1.08); z-index: 10; border-color: var(--primary); }
+        .card img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1; }
+        .card-title { position: relative; z-index: 2; width: 100%; background: linear-gradient(transparent, rgba(0,0,0,0.9)); padding: 12px 10px; font-size: 0.85rem; color: white; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="index.html" class="logo">DUVKUMON</a>
+        <div class="nav-links">
+            <a href="index.html">Início</a>
+            <a href="estagios.html" class="active">Estágios</a>
+        </div>
+    </nav>
+
+    <div class="header-title">
+        <h1>Navegar por Estágio</h1>
+        <div class="grid-container">
+            <a href="#estagio-h" class="stage-card">H</a> <a href="#estagio-i" class="stage-card">I</a>
+            <a href="#estagio-j" class="stage-card">J</a> <a href="#estagio-k" class="stage-card">K</a>
+            <a href="#estagio-l" class="stage-card">L</a> <a href="#estagio-m" class="stage-card">M</a>
+            <a href="#estagio-n" class="stage-card">N</a> <a href="#estagio-o" class="stage-card">O</a>
+        </div>
+    </div>
+
+    <div id="estagio-h" class="stage-section">
+        <div class="section-title">Estágio H</div>
+        <div class="row-container">
+            <a href='aulas/player.html?id=1mpbOCM-B25jKHUuIxePAdPIWH6bqAlDB&nome=Dica de Equação' class='card'>
+                <img src='img/dica-equacao.png'><span class="card-title">Dica de Equação 1º Grau</span>
+            </a>
+        </div>
+    </div>
+
+    <div id="estagio-i" class="stage-section">
+        <div class="section-title">Estágio I</div>
+        <div class="row-container">
+            <a href='aulas/player.html?id=1iFJNs43ztWF_wqA_qOYRVEbuHL25pq8w&nome=Fatoração como Divisão' class='card'>
+                <img src='img/fatoracao-divisao.png'><span class="card-title">Fatoração como Divisão</span>
+            </a>
+            <a href='aulas/player.html?id=1aoDUlLodJ6y3GltCcIinJ5B0Wp45hyS-&nome=Fatoração do Vértice' class='card'>
+                <img src='img/fatoracao-vertice.png'><span class="card-title">Fatoração do Vértice</span>
+            </a>
+            <a href='aulas/player.html?id=1NkjEl7CvzLuNR-ERjaY9w8tMhI-7CNxF&nome=Gráfico de Parábola' class='card'>
+                <img src='img/grafico-parabola.png'><span class="card-title">Gráfico de Parábola</span>
+            </a>
+            <a href='aulas/player.html?id=17Lm67fbA76MjAeJqk80Zizindznv2QZa&nome=I 17b' class='card'>
+                <img src='img/i-17b.png'><span class="card-title">I 17b</span>
+            </a>
+            <a href='aulas/player.html?id=1ZUbjT7VKxQrH6QFvE8h9tH1X56Y2CiMK&nome=I 33A' class='card'>
+                <img src='img/i-33a.png'><span class="card-title">I 33A</span>
+            </a>
+        </div>
+    </div>
+
+    <div id="estagio-j" class="stage-section">
+        <div class="section-title">Estágio J</div>
+        <div class="row-container">
+            <a href='aulas/player.html?id=1jp1iB_wYO8tbNoNcB8SFwEGtOQxzHd4k&nome=Comparação de Coeficientes' class='card'>
+                <img src='img/j-comp-coef.png'><span class="card-title">Comparação de Coeficientes</span>
+            </a>
+            <a href='aulas/player.html?id=1nWhxV7JyGtNs_PvWRrfxJBh381l4PtYI&nome=Inequações J189 pt1' class='card'>
+                <img src='img/j-ineq-1.png'><span class="card-title">Inequações J189 pt1</span>
+            </a>
+            <a href='aulas/player.html?id=1o9O0Jgmh72FRLd8-7ATXO1Ea5gBleJmf&nome=Inequações J189 pt2' class='card'>
+                <img src='img/j-ineq-2.png'><span class="card-title">Inequações J189 pt2</span>
+            </a>
+            <a href='aulas/player.html?id=1Hdc_YvVlSvG_TS9EWiSRa9RDuQIf5_Pl&nome=Exercício J24' class='card'>
+                <img src='img/j24.png'><span class="card-title">Exercício J24</span>
+            </a>
+            <a href='aulas/player.html?id=1yM4g0Ewlc9m0Xa3Y6G1xg4PFyMPbjUBn&nome=Exercício J27' class='card'>
+                <img src='img/j27.png'><span class="card-title">Exercício J27</span>
+            </a>
+        </div>
+    </div>
+
+    <div id="estagio-k" class="stage-section">
+        <div class="section-title">Estágio K</div>
+        <div class="row-container">
+            <a href='aulas/player.html?id=1YzioBlFkuINduWVWjPgAFvxHdRTLyqbn&nome=Eixo de simetria e vértice Parte 1' class='card'>
+                <img src='img/k-eixo-1.png'><span class="card-title">Eixo de Simetria P1</span>
+            </a>
+            <a href='aulas/player.html?id=1xzqVe7bqmSK_5SL6KlYwUjDNJoMYC4D4&nome=Eixo de simetria e vértice parte 2' class='card'>
+                <img src='img/k-eixo-2.png'><span class="card-title">Eixo de Simetria P2</span>
+            </a>
+            <a href='aulas/player.html?id=1-QSCT2b4dL6PY-fOJ7Vvs0WQnfh_Kryf&nome=K 36 a' class='card'>
+                <img src='img/k36a.png'><span class="card-title">K 36 a</span>
+            </a>
+            <a href='aulas/player.html?id=1iHfGIwB5udEAXL99lxFZpBkjc0yg4Yh1&nome=K31 a' class='card'>
+                <img src='img/k31a.png'><span class="card-title">K31 a - Vértice</span>
+            </a>
+            <a href='aulas/player.html?id=1uj42mW2C3WsW1oeDucAUWUs9H2Ui99dO&nome=K37a' class='card'>
+                <img src='img/k37a.png'><span class="card-title">K37a - Parábola</span>
+            </a>
+        </div>
+    </div>
+
+    <div id="estagio-l" class="stage-section"><div class="section-title">Estágio L</div><div class="row-container"></div></div>
+    <div id="estagio-m" class="stage-section"><div class="section-title">Estágio M</div><div class="row-container"></div></div>
+    <div id="estagio-n" class="stage-section"><div class="section-title">Estágio N</div><div class="row-container"></div></div>
+    <div id="estagio-o" class="stage-section"><div class="section-title">Estágio O</div><div class="row-container"></div></div>
+
+    <div style="height: 100px;"></div>
+</body>
+</html>

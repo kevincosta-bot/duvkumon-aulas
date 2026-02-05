@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DUVKUMON Player</title>
+    <style>
+        :root { --bg-color: #000; --primary: #3a05f8; --text: #ffffff; }
+        body { margin: 0; background-color: var(--bg-color); color: var(--text); font-family: 'Segoe UI', sans-serif; }
+        .navbar { display: flex; align-items: center; padding: 15px 4%; background-color: #000; border-bottom: 1px solid #333; }
+        .logo { color: var(--primary); font-size: 1.8rem; font-weight: bold; text-decoration: none; margin-right: 40px; }
+        .video-wrapper { max-width: 1000px; margin: 40px auto; position: relative; padding-bottom: 56.25%; background: black; }
+        .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+        .info { max-width: 1000px; margin: 0 auto; padding: 0 20px; }
+        .btn { padding: 12px 24px; background: #333; color: white; text-decoration: none; border-radius: 4px; display: inline-block; margin-top: 20px; transition: 0.3s; }
+        .btn:hover { background: var(--primary); }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="../estagios.html" class="logo">DUVKUMON</a>
+    </nav>
+
+    <div class="video-wrapper">
+        <iframe id="videoFrame" src="" allow="autoplay; fullscreen"></iframe>
+    </div>
+
+    <div class="info">
+        <h1 id="videoTitle">Carregando aula...</h1>
+        <a href="../estagios.html" class="btn">← Voltar aos Estágios</a>
+    </div>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        let id = params.get('id');
+        let nome = params.get('nome');
+
+        if (id) {
+            id = id.trim(); // Limpa espaços extras
+            document.getElementById('videoFrame').src = `https://drive.google.com/file/d/${id}/preview`;
+        }
+        if (nome) {
+            document.getElementById('videoTitle').innerText = nome;
+            document.title = "Assistindo: " + nome;
+        }
+    </script>
+</body>
+</html>

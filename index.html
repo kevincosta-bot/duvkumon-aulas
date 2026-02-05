@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DUVKUMON - Resolvendo o Futuro</title>
+    <style>
+        :root { 
+            --bg-color: #0a0a0a; 
+            --primary: #3a05f8; 
+            --primary-hover: #2a04c7;
+            --text: #ffffff; 
+            --card-bg: #1a1a1a;
+        }
+        
+        body { 
+            margin: 0; padding: 0; background-color: var(--bg-color); 
+            color: var(--text); font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; 
+        }
+
+        /* NAVBAR */
+        .navbar { 
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 15px 4%; background-color: rgba(0, 0, 0, 0.9); 
+            position: fixed; top: 0; width: 92%; z-index: 1000;
+        }
+        .logo { color: var(--primary); font-size: 1.8rem; font-weight: bold; text-decoration: none; }
+        .nav-links a { color: #ccc; text-decoration: none; margin-left: 20px; font-weight: 500; transition: 0.3s; }
+        .nav-links a:hover { color: white; }
+
+        /* HERO SECTION (BANNER) */
+        .hero {
+            height: 80vh;
+            background: linear-gradient(to right, rgba(0,0,0,0.9) 30%, transparent), 
+                        url('img/hero-bg.jpg'); /* Você pode colocar uma imagem de matemática no fundo */
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 0 4%;
+        }
+        .hero h1 { font-size: 4rem; margin: 0; color: white; max-width: 600px; }
+        .hero p { font-size: 1.2rem; color: #ccc; max-width: 500px; margin: 20px 0; }
+        .btn-start {
+            padding: 15px 40px; background-color: var(--primary); color: white;
+            text-decoration: none; font-weight: bold; border-radius: 5px;
+            width: fit-content; transition: 0.3s; font-size: 1.1rem;
+        }
+        .btn-start:hover { background-color: var(--primary-hover); transform: scale(1.05); }
+
+        /* CONTEÚDO PRINCIPAL */
+        .main-content { padding: 50px 4%; }
+        .section-title { font-size: 1.8rem; margin-bottom: 30px; border-left: 5px solid var(--primary); padding-left: 15px; }
+
+        /* CARDS DE NÍVEIS */
+        .levels-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        .level-card {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 10px;
+            border: 1px solid #333;
+            transition: 0.3s;
+            text-decoration: none;
+            color: white;
+        }
+        .level-card:hover {
+            border-color: var(--primary);
+            background: #222;
+            transform: translateY(-5px);
+        }
+        .level-card h3 { color: var(--primary); font-size: 1.5rem; margin-top: 0; }
+        .level-card p { color: #999; line-height: 1.6; }
+
+        footer {
+            padding: 40px 4%;
+            text-align: center;
+            border-top: 1px solid #333;
+            color: #666;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="index.html" class="logo">DUVKUMON</a>
+        <div class="nav-links">
+            <a href="estagios.html">Estágios</a>
+            <a href="#">Sobre</a>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <h1>Domine a Matemática Passo a Passo</h1>
+        <p>Resoluções detalhadas dos estágios Kumon para acelerar seu aprendizado. Do H ao O, tudo em um só lugar.</p>
+        <a href="estagios.html" class="btn-start">Começar Agora</a>
+    </header>
+
+    <main class="main-content">
+        <h2 class="section-title">O que você vai encontrar?</h2>
+        
+        <div class="levels-grid">
+            <a href="estagios.html#estagio-h" class="level-card">
+                <h3>Estágios H - I</h3>
+                <p>Equações do primeiro grau, fatoração básica e introdução às funções quadráticas. O alicerce da álgebra.</p>
+            </a>
+
+            <a href="estagios.html#estagio-j" class="level-card">
+                <h3>Estágios J - L</h3>
+                <p>Inequações complexas, polinômios e sistemas de equações. Prepare-se para desafios maiores.</p>
+            </a>
+
+            <a href="estagios.html#estagio-m" class="level-card">
+                <h3>Estágios M - O</h3>
+                <p>Cálculo diferencial e integral, trigonometria avançada e logaritmos. O topo da matemática escolar.</p>
+            </a>
+        </div>
+    </main>
+
+    <footer>
+        &copy; 2026 DUVKUMON - Ferramenta de apoio ao estudante.
+    </footer>
+
+</body>
+</html>

@@ -35,8 +35,9 @@
     <nav class="navbar">
         <a href="index.html" class="logo">DUVKUMON</a>
         <div class="nav-links">
-            <a href="estagios.html">Estágios</a>
-            <a href="resolucoes.html">Resoluções</a> </div>
+            <a href="estagios.html" class="active">Estágios</a>
+            <a href="resolucoes.html">Resoluções</a>
+        </div>
     </nav>
 
     <div class="header-title">
@@ -63,7 +64,7 @@
         <div class="row-container">
             <a href='aulas/player.html?id=1iFJNs43ztWF_wqA_qOYrVEbuHL25pq8w&nome=fatoraçao como divisão' class='card'>
                 <img src='img/fatoracao-divisao.png'><span class="card-title">Fatoração como Divisão</span> 
-            
+            </a>
             <a href='aulas/player.html?id=1aoDUlLodJ6y3GltCcIinJ5B0Wp45hyS-&nome=Fatoração do Vértice' class='card'>
                 <img src='img/fatoracao-vertice.png'><span class="card-title">Fatoração do Vértice</span>
             </a>
@@ -76,15 +77,15 @@
             <a href='aulas/player.html?id=1ZUbjT7VKxQrH6QFvE8h9tH1X56Y2CiMK&nome=I 33A' class='card'>
                 <img src='img/i-33a.png'><span class="card-title">I 33A</span>
             </a>
-                <a href='aulas/player.html?id=1YdP22ioFe5V1TQzme8-r4aEOrRm5bDd7&nome=Raizes quadradas' class='card'>
+            <a href='aulas/player.html?id=1YdP22ioFe5V1TQzme8-r4aEOrRm5bDd7&nome=Raizes quadradas' class='card'>
                 <img src='img/raizes-quadradas.png'><span class="card-title">Raizes quadradas</span>
             </a>
-                <a href='aulas/player.html?id=1ed0HCAVY2Ga35_fCBnUJrtzqSMAZnf0j&nome=Vértice parte 1' class='card'>
-                    <img src='img/Vértice parte 1.png' alt='Vértice parte 1'><span class="card-title">Vértice Parte 1</span>
-                </a>
-                <a href='aulas/player.html?id=1pjA7Z3O_M0LZl47q3E8a0O5k-T-QLsIV&nome=Vértice parte 2' class='card'>
-                    <img src='img/Vértice parte 2.png'><span class="card-title">Vértice Parte 2</span>
-                </a>
+            <a href='aulas/player.html?id=1ed0HCAVY2Ga35_fCBnUJrtzqSMAZnf0j&nome=Vértice parte 1' class='card'>
+                <img src='img/Vértice parte 1.png' alt='Vértice parte 1'><span class="card-title">Vértice Parte 1</span>
+            </a>
+            <a href='aulas/player.html?id=1pjA7Z3O_M0LZl47q3E8a0O5k-T-QLsIV&nome=Vértice parte 2' class='card'>
+                <img src='img/Vértice parte 2.png'><span class="card-title">Vértice Parte 2</span>
+            </a>
         </div>
     </div>
 
@@ -136,17 +137,47 @@
     <div id="estagio-o" class="stage-section"><div class="section-title">Estágio O</div><div class="row-container"></div></div>
 
     <div style="height: 100px;"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        // Conexão com o seu banco de dados
+        const supabaseUrl = 'https://kuqjjxexcclcdcktnjkh.supabase.co';
+        const supabaseKey = 'sb_publishable__mdiyLCpT94G73dB9VFEMg_ZqcO8OdI';
+        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+        async function carregarVideos() {
+            try {
+                // Busca todas as aulas cadastradas na tabela
+                const { data: aulas, error } = await supabase.from('aulas').select('*');
+                
+                if (error) {
+                    console.error("Erro ao conectar no banco:", error);
+                    return;
+                }
+
+                // Injeta cada aula na respectiva seção
+                aulas.forEach(aula => {
+                    let idSecao = 'estagio-' + aula.estagio.toLowerCase();
+                    let secao = document.querySelector('#' + idSecao + ' .row-container');
+
+                    if (secao) {
+                        let cartaoHtml = `
+                            <a href='aulas/player.html?id=${aula.id_drive}&nome=${aula.nome_aula}' class='card'>
+                                <img src='img/${aula.nome_imagem}'>
+                                <span class="card-title">${aula.nome_aula}</span>
+                            </a>
+                        `;
+                        // Adiciona o cartão no HTML da página
+                        secao.innerHTML += cartaoHtml;
+                    }
+                });
+            } catch (err) {
+                console.error("Falha na execução do script:", err);
+            }
+        }
+
+        // Executa a função ao carregar a página
+        carregarVideos();
+    </script>
 </body>
-
 </html>
-
-
-
-
-
-
-
-
-
-
-

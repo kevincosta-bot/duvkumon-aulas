@@ -44,43 +44,44 @@
         // CORREÇÃO: Variável renomeada para meuBanco para não dar conflito!
         const meuBanco = window.supabase.createClient(supabaseUrl, supabaseKey);
 
-        async function verificarSenha() {
+       async function verificarSenha() {
             const nome = document.getElementById("nomeInput").value.trim();
-            // Pega a senha e já transforma tudo em MAIÚSCULA para evitar erro se o aluno digitar minúsculo
             const senha = document.getElementById("senhaInput").value.trim().toUpperCase(); 
             const msgErro = document.getElementById("erro-msg");
             
-            // 🔐 SEU NOVO DICIONÁRIO DE SENHAS POR UNIDADE 👇
-            // Você pode adicionar quantas quiser seguindo esse padrão: "SENHA": "Nome da Unidade"
+            // 🔐 O SEU DICIONÁRIO DE SENHAS POR UNIDADE
             const senhasPermitidas = {
-                "DUV2026": "Unidade Unai",
+                "DUV2026": "Unidade Matriz",
                 "CENTRO26": "Unidade Centro",
                 "SUL26": "Unidade Zona Sul",
                 "KUMON123": "Unidade Parceira 4"
             }; 
 
             if (!nome) {
-                msgErro.textContent = "Por favor, digite seu nome antes de entrar!";
+                msgErro.textContent = "Por favor, digite o seu nome antes de entrar!";
                 msgErro.style.display = "block";
                 return;
             }
 
-            // 2. Verifica se a senha digitada EXISTE no nosso dicionário
+            // Verifica se a senha existe no dicionário
             if (senhasPermitidas[senha]) {
                 msgErro.style.display = "none";
                 document.getElementById("btnEntrar").style.display = "none";
                 document.getElementById("carregando").style.display = "block";
 
-                // Pega o nome da unidade correspondente à senha que ele usou
+                // Descobre qual é a unidade com base na senha digitada
                 const unidadeAcessada = senhasPermitidas[senha];
 
                 try {
-                    // Registra o acesso no Supabase
+                    // REGISTA NO SUPABASE: Agora envia o Nome E a Unidade!
                     await meuBanco.from('acessos').insert([
-                        { nome_aluno: nome } // Opcional: futuramente podemos salvar a unidade aqui também!
+                        { 
+                            nome_aluno: nome, 
+                            unidade: unidadeAcessada 
+                        }
                     ]);
                 } catch (error) {
-                    console.error("Erro ao registrar no banco:", error);
+                    console.error("Erro ao registar no banco:", error);
                 }
 
                 localStorage.setItem("logado_duvkumon", "sim");

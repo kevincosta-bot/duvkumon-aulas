@@ -40,7 +40,9 @@
         // Suas chaves de conexão
         const supabaseUrl = 'https://kuqjjxexcclcdcktnjkh.supabase.co';
         const supabaseKey = 'sb_publishable__mdiyLCpT94G73dB9VFEMg_ZqcO8OdI';
-        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+        
+        // CORREÇÃO: Variável renomeada para meuBanco
+        const meuBanco = window.supabase.createClient(supabaseUrl, supabaseKey);
 
         async function verificarSenha() {
             const nome = document.getElementById("nomeInput").value.trim();
@@ -63,25 +65,9 @@
                 document.getElementById("btnEntrar").style.display = "none";
                 document.getElementById("carregando").style.display = "block";
 
-                // 3. Registra o acesso no Supabase silenciosamente
+                // 3. Registra o acesso no Supabase usando a variável meuBanco
                 try {
-                    await supabase.from('acessos').insert([
+                    await meuBanco.from('acessos').insert([
                         { nome_aluno: nome }
                     ]);
-                } catch (error) {
-                    console.error("Erro ao registrar no banco:", error);
-                }
-
-                // 4. Salva a permissão no navegador e redireciona para os vídeos
-                localStorage.setItem("logado_duvkumon", "sim");
-                localStorage.setItem("nome_usuario", nome); // Salva o nome para podermos usar depois
-                window.location.href = "estagios.html";
-
-            } else {
-                msgErro.textContent = "Senha incorreta. Tente novamente.";
-                msgErro.style.display = "block";
-            }
-        }
-    </script>
-</body>
-</html>
+                } catch

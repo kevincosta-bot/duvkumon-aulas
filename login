@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acesso Restrito - DUVKUMON</title>
+    <style>
+        :root { --bg-color: #141414; --primary: #3a05f8; --text: #ffffff; }
+        body { margin: 0; background-color: var(--bg-color); color: var(--text); font-family: 'Segoe UI', sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; }
+        .login-box { background: #000; padding: 40px; border-radius: 8px; border: 1px solid #333; text-align: center; width: 100%; max-width: 350px; box-shadow: 0 0 20px rgba(58, 5, 248, 0.2); }
+        .login-box h2 { margin-top: 0; color: var(--primary); }
+        
+        .login-box input { width: 90%; padding: 12px; margin: 10px 0; border: none; border-radius: 4px; background: #222; color: white; font-size: 1rem; box-sizing: border-box; }
+        .login-box input:focus { outline: 2px solid var(--primary); }
+        
+        .login-box button { width: 100%; padding: 12px; background: var(--primary); color: white; border: none; border-radius: 4px; font-size: 1.1rem; font-weight: bold; cursor: pointer; transition: 0.3s; margin-top: 15px; }
+        .login-box button:hover { background: #2a04c7; }
+        #erro-msg { color: #ff4444; margin-top: 15px; font-size: 0.9rem; display: none; }
+        #carregando { color: #888; font-size: 0.9rem; display: none; margin-top: 10px; }
+    </style>
+</head>
+<body>
+
+    <div class="login-box">
+        <h2>DUVKUMON</h2>
+        <p>Área exclusiva para unidades parceiras.</p>
+        
+        <input type="text" id="nomeInput" placeholder="Digite seu Nome (Ex: João Silva)">
+        
+        <input type="password" id="senhaInput" placeholder="Digite a senha de acesso">
+        
+        <button onclick="verificarSenha()" id="btnEntrar">Entrar</button>
+        
+        <p id="carregando">Registrando acesso e entrando...</p>
+        <p id="erro-msg"></p>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        // Suas chaves de conexão
+        const supabaseUrl = 'https://kuqjjxexcclcdcktnjkh.supabase.co';
+        const supabaseKey = 'sb_publishable__mdiyLCpT94G73dB9VFEMg_ZqcO8OdI';
+        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+        async function verificarSenha() {
+            const nome = document.getElementById("nomeInput").value.trim();
+            const senha = document.getElementById("senhaInput").value;
+            const msgErro = document.getElementById("erro-msg");
+            
+            // A SENHA GERAL DA PLATAFORMA 👇
+            const senhaCorreta = "DUV2026"; 
+
+            // 1. Obriga o aluno a digitar o nome
+            if (!nome) {
+                msgErro.textContent = "Por favor, digite seu nome antes de entrar!";
+                msgErro.style.display = "block";
+                return;
+            }
+
+            // 2. Verifica se a senha está certa
+            if (senha === senhaCorreta) {
+                msgErro.style.display = "none";
+                document.getElementById("btnEntrar").style.display = "none";
+                document.getElementById("carregando").style.display = "block";
+
+                // 3. Registra o acesso no Supabase silenciosamente
+                try {
+                    await supabase.from('acessos').insert([
+                        { nome_aluno: nome }
+                    ]);
+                } catch (error) {
+                    console.error("Erro ao registrar no banco:", error);
+                }
+
+                // 4. Salva a permissão no navegador e redireciona para os vídeos
+                localStorage.setItem("logado_duvkumon", "sim");
+                localStorage.setItem("nome_usuario", nome); // Salva o nome para podermos usar depois
+                window.location.href = "estagios.html";
+
+            } else {
+                msgErro.textContent = "Senha incorreta. Tente novamente.";
+                msgErro.style.display = "block";
+            }
+        }
+    </script>
+</body>
+</html>

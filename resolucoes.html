@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
+    <script>
+        // Se o navegador NÃO tiver o passe livre salvo, expulsa para o login
+        if (localStorage.getItem("logado_duvkumon") !== "sim") {
+            window.location.href = "login.html";
+        }
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Resoluções e Gabaritos - DUVKUMON</title>

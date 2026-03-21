@@ -40,11 +40,29 @@
 
     <nav class="navbar">
         <a href="index.html" class="logo">DUVKUMON</a>
-        <div class="nav-links">
+        <div class="nav-links" style="display: flex; align-items: center;">
             <a href="estagios.html" class="active">Estágios</a>
             <a href="resolucoes.html">Resoluções</a>
+            
+            <span id="nome-aluno" style="color: var(--primary); font-weight: bold; margin-left: 20px; border-left: 1px solid #333; padding-left: 20px;"></span>
+            <a href="#" onclick="sair()" style="color: #ff4444; font-size: 0.9rem; margin-left: 15px;">Sair</a>
         </div>
     </nav>
+
+    <script>
+        // Puxa o nome do aluno salvo no navegador e mostra na tela
+        const nomeSalvo = localStorage.getItem("nome_usuario");
+        if(nomeSalvo) {
+            document.getElementById("nome-aluno").textContent = "Olá, " + nomeSalvo;
+        }
+
+        // Função de Logout: apaga o passe livre e joga pro login
+        function sair() {
+            localStorage.removeItem("logado_duvkumon");
+            localStorage.removeItem("nome_usuario");
+            window.location.href = "login.html";
+        }
+    </script>
 
     <div class="header-title">
         <h1>Navegar por Estágio</h1>

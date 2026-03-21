@@ -46,45 +46,51 @@
 
         async function verificarSenha() {
             const nome = document.getElementById("nomeInput").value.trim();
-            const senha = document.getElementById("senhaInput").value;
+            // Pega a senha e já transforma tudo em MAIÚSCULA para evitar erro se o aluno digitar minúsculo
+            const senha = document.getElementById("senhaInput").value.trim().toUpperCase(); 
             const msgErro = document.getElementById("erro-msg");
             
-            // A SENHA GERAL DA PLATAFORMA 👇
-            const senhaCorreta = "DUV2026"; 
+            // 🔐 SEU NOVO DICIONÁRIO DE SENHAS POR UNIDADE 👇
+            // Você pode adicionar quantas quiser seguindo esse padrão: "SENHA": "Nome da Unidade"
+            const senhasPermitidas = {
+                "DUV2026": "Unidade Matriz",
+                "CENTRO26": "Unidade Centro",
+                "SUL26": "Unidade Zona Sul",
+                "KUMON123": "Unidade Parceira 4"
+            }; 
 
-            // 1. Obriga o aluno a digitar o nome
             if (!nome) {
                 msgErro.textContent = "Por favor, digite seu nome antes de entrar!";
                 msgErro.style.display = "block";
                 return;
             }
 
-            // 2. Verifica se a senha está certa
-            if (senha === senhaCorreta) {
+            // 2. Verifica se a senha digitada EXISTE no nosso dicionário
+            if (senhasPermitidas[senha]) {
                 msgErro.style.display = "none";
                 document.getElementById("btnEntrar").style.display = "none";
                 document.getElementById("carregando").style.display = "block";
 
-                // 3. Registra o acesso no Supabase usando a variável meuBanco
+                // Pega o nome da unidade correspondente à senha que ele usou
+                const unidadeAcessada = senhasPermitidas[senha];
+
                 try {
+                    // Registra o acesso no Supabase
                     await meuBanco.from('acessos').insert([
-                        { nome_aluno: nome }
+                        { nome_aluno: nome } // Opcional: futuramente podemos salvar a unidade aqui também!
                     ]);
                 } catch (error) {
-                    // Loga o erro mas tenta redirecionar mesmo assim para não travar o aluno
                     console.error("Erro ao registrar no banco:", error);
                 }
 
-                // 4. Salva a permissão no navegador e redireciona
                 localStorage.setItem("logado_duvkumon", "sim");
                 localStorage.setItem("nome_usuario", nome); 
                 window.location.href = "estagios.html";
 
             } else {
-                msgErro.textContent = "Senha incorreta. Tente novamente.";
+                msgErro.textContent = "Senha incorreta ou unidade não autorizada.";
                 msgErro.style.display = "block";
                 
-                // Devolve o botão se o aluno errar a senha
                 document.getElementById("btnEntrar").style.display = "block";
                 document.getElementById("carregando").style.display = "none";
             }
